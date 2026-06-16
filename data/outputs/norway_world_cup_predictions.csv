@@ -1,0 +1,19 @@
+fixture,date,team,opponent,predicted_win_probability,predicted_draw_probability,predicted_loss_probability,predicted_result,model_name,likely_scoreline
+Iraq vs Norway,2026-06-16,Norway,Iraq,0.7766,0.1757,0.0477,win,logistic,
+Iraq vs Norway,2026-06-16,Norway,Iraq,0.5353,0.247,0.2177,win,poisson,1-0
+Iraq vs Norway,2026-06-16,Norway,Iraq,0.6559,0.2113,0.1327,win,ensemble,
+Iraq vs Norway,2026-06-16,Iraq,Norway,0.0477,0.1758,0.7765,loss,logistic,
+Iraq vs Norway,2026-06-16,Iraq,Norway,0.2177,0.247,0.5353,loss,poisson,0-1
+Iraq vs Norway,2026-06-16,Iraq,Norway,0.1327,0.2114,0.6559,loss,ensemble,
+Norway vs Senegal,2026-06-22,Norway,Senegal,0.5388,0.2829,0.1783,win,logistic,
+Norway vs Senegal,2026-06-22,Norway,Senegal,0.3055,0.2727,0.4218,loss,poisson,1-1
+Norway vs Senegal,2026-06-22,Norway,Senegal,0.4222,0.2778,0.3,win,ensemble,
+Norway vs Senegal,2026-06-22,Senegal,Norway,0.1783,0.2829,0.5388,loss,logistic,
+Norway vs Senegal,2026-06-22,Senegal,Norway,0.4218,0.2727,0.3055,win,poisson,1-1
+Norway vs Senegal,2026-06-22,Senegal,Norway,0.3,0.2778,0.4222,loss,ensemble,
+Norway vs France,2026-06-26,Norway,France,0.3466,0.3133,0.3401,win,logistic,
+Norway vs France,2026-06-26,Norway,France,0.3645,0.2389,0.3966,loss,poisson,1-1
+Norway vs France,2026-06-26,Norway,France,0.3556,0.2761,0.3684,loss,ensemble,
+Norway vs France,2026-06-26,France,Norway,0.34,0.3134,0.3466,loss,logistic,
+Norway vs France,2026-06-26,France,Norway,0.3966,0.2389,0.3645,win,poisson,1-1
+Norway vs France,2026-06-26,France,Norway,0.3683,0.2762,0.3555,win,ensemble,
