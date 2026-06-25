@@ -4639,3 +4639,6 @@ match_id,date,home_team,away_team,home_score,away_score,competition,competition_
 2026-06-13_SQ_HT,2026-06-13,Scotland,Haiti,1,0,FIFA World Cup,world_cup,True,eloratings.net
 2026-06-16_IQ_NO,2026-06-16,Iraq,Norway,1,4,FIFA World Cup,world_cup,True,eloratings.net
 2026-06-16_FR_SN,2026-06-16,France,Senegal,3,1,FIFA World Cup,world_cup,True,eloratings.net
+2026-06-22_FR_IQ,2026-06-22,France,Iraq,3,0,FIFA World Cup,world_cup,True,eloratings.net
+2026-06-23_NO_SN,2026-06-23,Norway,Senegal,3,2,FIFA World Cup,world_cup,True,eloratings.net
+

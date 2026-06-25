@@ -11,9 +11,9 @@ Norway vs Senegal,2026-06-22,Norway,Senegal,0.4222,0.2778,0.3,win,ensemble,
 Norway vs Senegal,2026-06-22,Senegal,Norway,0.1783,0.2829,0.5388,loss,logistic,
 Norway vs Senegal,2026-06-22,Senegal,Norway,0.4218,0.2727,0.3055,win,poisson,1-1
 Norway vs Senegal,2026-06-22,Senegal,Norway,0.3,0.2778,0.4222,loss,ensemble,
-Norway vs France,2026-06-26,Norway,France,0.3466,0.3133,0.3401,win,logistic,
-Norway vs France,2026-06-26,Norway,France,0.3645,0.2389,0.3966,loss,poisson,1-1
-Norway vs France,2026-06-26,Norway,France,0.3556,0.2761,0.3684,loss,ensemble,
-Norway vs France,2026-06-26,France,Norway,0.34,0.3134,0.3466,loss,logistic,
-Norway vs France,2026-06-26,France,Norway,0.3966,0.2389,0.3645,win,poisson,1-1
-Norway vs France,2026-06-26,France,Norway,0.3683,0.2762,0.3555,win,ensemble,
+Norway vs France,2026-06-26,Norway,France,0.3585,0.3125,0.3291,win,logistic,
+Norway vs France,2026-06-26,Norway,France,0.3683,0.2375,0.3942,loss,poisson,1-1
+Norway vs France,2026-06-26,Norway,France,0.3634,0.275,0.3616,win,ensemble,
+Norway vs France,2026-06-26,France,Norway,0.3291,0.3126,0.3584,loss,logistic,
+Norway vs France,2026-06-26,France,Norway,0.3942,0.2375,0.3683,win,poisson,1-1
+Norway vs France,2026-06-26,France,Norway,0.3616,0.2751,0.3633,loss,ensemble,
