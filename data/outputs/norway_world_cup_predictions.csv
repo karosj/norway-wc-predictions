@@ -17,3 +17,9 @@ Norway vs France,2026-06-26,Norway,France,0.3634,0.275,0.3616,win,ensemble,
 Norway vs France,2026-06-26,France,Norway,0.3291,0.3126,0.3584,loss,logistic,
 Norway vs France,2026-06-26,France,Norway,0.3942,0.2375,0.3683,win,poisson,1-1
 Norway vs France,2026-06-26,France,Norway,0.3616,0.2751,0.3633,loss,ensemble,
+Norway vs Ivory Coast,2026-06-30,Norway,Cote d Ivoire,0.4564,0.3005,0.2431,win,logistic,
+Norway vs Ivory Coast,2026-06-30,Norway,Cote d Ivoire,0.3320,0.2626,0.4054,loss,poisson,1-1
+Norway vs Ivory Coast,2026-06-30,Norway,Cote d Ivoire,0.3942,0.2816,0.3243,win,ensemble,
+Norway vs Ivory Coast,2026-06-30,Cote d Ivoire,Norway,0.2431,0.3005,0.4564,loss,logistic,
+Norway vs Ivory Coast,2026-06-30,Cote d Ivoire,Norway,0.4054,0.2626,0.3320,win,poisson,1-1
+Norway vs Ivory Coast,2026-06-30,Cote d Ivoire,Norway,0.3243,0.2816,0.3942,loss,ensemble,

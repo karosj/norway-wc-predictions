@@ -4641,4 +4641,8 @@ match_id,date,home_team,away_team,home_score,away_score,competition,competition_
 2026-06-16_FR_SN,2026-06-16,France,Senegal,3,1,FIFA World Cup,world_cup,True,eloratings.net
 2026-06-22_FR_IQ,2026-06-22,France,Iraq,3,0,FIFA World Cup,world_cup,True,eloratings.net
 2026-06-23_NO_SN,2026-06-23,Norway,Senegal,3,2,FIFA World Cup,world_cup,True,eloratings.net
+2026-06-15_CI_EC,2026-06-15,Cote d Ivoire,Ecuador,1,0,FIFA World Cup,world_cup,True,flashscore.com
+2026-06-20_DE_CI,2026-06-20,Germany,Cote d Ivoire,2,1,FIFA World Cup,world_cup,True,flashscore.com
+2026-06-25_CW_CI,2026-06-25,Curacao,Cote d Ivoire,0,2,FIFA World Cup,world_cup,True,flashscore.com
+2026-06-26_NO_FR,2026-06-26,Norway,France,1,4,FIFA World Cup,world_cup,True,flashscore.com
 
