@@ -23,3 +23,9 @@ Norway vs Ivory Coast,2026-06-30,Norway,Cote d Ivoire,0.3942,0.2816,0.3243,win,e
 Norway vs Ivory Coast,2026-06-30,Cote d Ivoire,Norway,0.2431,0.3005,0.4564,loss,logistic,
 Norway vs Ivory Coast,2026-06-30,Cote d Ivoire,Norway,0.4054,0.2626,0.3320,win,poisson,1-1
 Norway vs Ivory Coast,2026-06-30,Cote d Ivoire,Norway,0.3243,0.2816,0.3942,loss,ensemble,
+Norway vs Brazil,2026-07-05,Norway,Brazil,0.2415,0.2995,0.4590,loss,logistic,
+Norway vs Brazil,2026-07-05,Norway,Brazil,0.3463,0.2476,0.4061,loss,poisson,1-1
+Norway vs Brazil,2026-07-05,Norway,Brazil,0.2939,0.2735,0.4326,loss,ensemble,
+Norway vs Brazil,2026-07-05,Brazil,Norway,0.4590,0.2995,0.2415,win,logistic,
+Norway vs Brazil,2026-07-05,Brazil,Norway,0.4061,0.2476,0.3463,win,poisson,1-1
+Norway vs Brazil,2026-07-05,Brazil,Norway,0.4326,0.2735,0.2939,win,ensemble,
