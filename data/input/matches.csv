@@ -4645,4 +4645,5 @@ match_id,date,home_team,away_team,home_score,away_score,competition,competition_
 2026-06-20_DE_CI,2026-06-20,Germany,Cote d Ivoire,2,1,FIFA World Cup,world_cup,True,flashscore.com
 2026-06-25_CW_CI,2026-06-25,Curacao,Cote d Ivoire,0,2,FIFA World Cup,world_cup,True,flashscore.com
 2026-06-26_NO_FR,2026-06-26,Norway,France,1,4,FIFA World Cup,world_cup,True,flashscore.com
+2026-06-30_CI_NO,2026-06-30,Cote d Ivoire,Norway,1,2,FIFA World Cup,world_cup,True,flashscore.com
 
