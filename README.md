@@ -2,15 +2,17 @@
 
 A reproducible football ML project that builds its own dataset from real match data,
 engineers leakage-safe pre-match features, and outputs win/draw/loss probabilities
-and a most-likely scoreline for Norway's three group-stage fixtures.
+and most-likely scorelines for Norway's 2026 World Cup matches.
 
-| Fixture | Date |
-|---|---|
-| Iraq vs Norway | 2026-06-16 |
-| Norway vs Senegal | 2026-06-22 |
-| Norway vs France | 2026-06-26 |
+| Phase | Fixture | Date |
+|---|---|---|
+| Group stage | Iraq vs Norway | 2026-06-16 |
+| Group stage | Norway vs Senegal | 2026-06-23 |
+| Group stage | Norway vs France | 2026-06-26 |
+| Round of 32 | Norway vs Ivory Coast | 2026-06-30 |
+| Round of 16 | Norway vs Brazil | 2026-07-05 |
 
-All three fixtures are treated as **neutral-venue** World Cup matches.
+All modeled World Cup fixtures are treated as **neutral-venue** matches.
 
 ---
 
@@ -40,15 +42,26 @@ That single command runs the entire pipeline:
 2. **Load + repair** — reshapes to team-perspective rows, fixes Flashscore mis-attribution
 3. **Engineer** — builds leakage-safe rolling features with `shift(1)` before every window
 4. **Evaluate** — time-based train/test split (train < 2025, test 2025+); prints accuracy + log-loss
-5. **Predict** — scores the three fixtures, writes `data/outputs/norway_world_cup_predictions.csv`
+5. **Predict** — scores the configured fixtures, writes `data/outputs/norway_world_cup_predictions.csv`
 
 ```bash
 py main.py --force-collect   # re-download eloratings and rebuild every input
 py main.py --skip-eval       # skip evaluation, jump straight to predictions
 ```
 
-For an interactive walkthrough of **Iraq vs Norway** (probabilities + scoreline grid),
-open [`notebooks/iraq_vs_norway.ipynb`](notebooks/iraq_vs_norway.ipynb).
+For interactive walkthroughs with probabilities and scoreline grids, open:
+
+| Notebook | Match |
+|---|---|
+| [`notebooks/iraq_vs_norway.ipynb`](notebooks/iraq_vs_norway.ipynb) | Iraq vs Norway |
+| [`notebooks/norway_vs_senegal.ipynb`](notebooks/norway_vs_senegal.ipynb) | Norway vs Senegal |
+| [`notebooks/norway_vs_france.ipynb`](notebooks/norway_vs_france.ipynb) | Norway vs France |
+| [`notebooks/norway_vs_ivory_coast.ipynb`](notebooks/norway_vs_ivory_coast.ipynb) | Norway vs Ivory Coast, Round of 32 |
+| [`notebooks/norway_vs_brazil.ipynb`](notebooks/norway_vs_brazil.ipynb) | Norway vs Brazil, Round of 16 |
+
+Note: `src/utils/config.py` still contains the original group-stage fixture list.
+The knockout notebooks define their fixtures directly, so they can incorporate
+verified post-group updates without changing the original fixture config.
 
 ---
 
@@ -58,21 +71,28 @@ open [`notebooks/iraq_vs_norway.ipynb`](notebooks/iraq_vs_norway.ipynb).
 
 | File | Content | Source |
 |---|---|---|
-| `data/input/matches.csv` | One row per match — date, teams, score, competition type, neutral flag | eloratings.net TSV |
-| `data/input/elo_ratings.csv` | Elo rating timeline, one row per team per match | eloratings.net TSV |
+| `data/input/matches.csv` | One row per match — date, teams, score, competition type, neutral flag | eloratings.net TSV + manual Flashscore R32 update |
+| `data/input/elo_ratings.csv` | Elo rating timeline, one row per team per match | eloratings.net TSV + latest manual Elo override |
 | `data/input/fifa_rankings.csv` | Year-end FIFA rank for the four focus teams | Hardcoded in `config.py` |
 | `data/input/flashscore_stats.csv` | Advanced per-team match stats (xG, xGOT, shots, possession, …) | Flashscore extraction (see `scripts/`) |
 
 The pipeline downloads `matches.csv` and `elo_ratings.csv` automatically on first run
-(eloratings.net TSV endpoints, no API key). The Flashscore file is pre-extracted and
-ships in `data/raw/flashscore_team_stats_raw.csv` — see [`scripts/README.md`](scripts/README.md)
+(eloratings.net TSV endpoints, no API key). The latest knockout updates add verified
+Flashscore rows for Ivory Coast's group matches, Norway 1–4 France, Norway's 2–1
+win over Ivory Coast, and current pre-R32 Elo values: Norway 1918, Ivory Coast 1743.
+For the Brazil R16 forecast, the pre-match Elo override is Norway 1934, Brazil 2031;
+the Brazil notebook appends the supplied Brazil 3–0 Haiti, Scotland 0–3 Brazil, and
+Brazil 2–1 Japan results in memory before feature engineering.
+The Flashscore file is pre-extracted and ships
+in `data/raw/flashscore_team_stats_raw.csv` — see [`scripts/README.md`](scripts/README.md)
 for how it was produced and how to refresh it.
 
 ### Why so many teams?
 
-We fetch eloratings for every opponent Norway, Iraq, Senegal, and France have faced,
-not just the four focus teams. This gives all-team context (rolling form + Elo) on both
-sides of every training match and powers the ~9 k-row all-team training set.
+We fetch eloratings for every opponent Norway, Iraq, Senegal, France, and later
+knockout opponents have faced, not just the focus teams. This gives all-team context
+(rolling form + Elo) on both sides of every training match and powers the ~9 k-row
+all-team training set.
 
 ### Flashscore data repair
 
@@ -108,21 +128,21 @@ prediction features are constructed identically.
 
 ## Evaluation
 
-Time-based split: train on matches before 2025-01-01, test on 2025+ (67 matches).
+Time-based split: train on matches before 2025-01-01, test on 2025+ (77 matches).
 The logistic model trains on the all-team dataset; Elo-gap alone is the dominant predictor.
 
 ```
 REFERENCE BASELINES
-  always-win    accuracy 0.657
-  class-prior   accuracy 0.657   log-loss 0.910
+  always-win    accuracy 0.636
+  class-prior   accuracy 0.636   log-loss 0.944
   uniform 1/3                    log-loss 1.099
 
 MODEL        accuracy   log-loss
-  logistic     0.672      0.833
+  logistic     0.714      0.785
 ```
 
 Honest caveats: Elo dominates — rolling form adds little on a small sample. Draws are
-the hardest class to call (always-win already scores 0.657 accuracy). Advanced Flashscore
+the hardest class to call (always-win already scores 0.636 accuracy). Advanced Flashscore
 stats are sparse and mostly imputed for the June 2026 fixtures. Treat probabilities as
 directional, not precise.
 
@@ -149,7 +169,23 @@ Latest ensemble consensus:
 |---|---|
 | Iraq vs Norway | Norway ~66% / draw ~21% / Iraq ~13% — most likely **Norway 1–0** |
 | Norway vs Senegal | Norway ~42% / draw ~28% / Senegal ~30% — most likely **1–1** |
-| Norway vs France | Norway ~36% / draw ~28% / France ~37% — near toss-up, France slight favourite |
+| Norway vs France | | Norway ~29% / draw ~27% / Senegal ~44% — most likely **1–1** |
+| Norway vs Ivory Coast | Norway ~39% / draw ~28% / Ivory Coast ~33% — most likely **1–1** |
+| Norway vs Brazil | Brazil ~48% / draw ~26% / Norway ~26% over 90 minutes — most likely **1–1** |
+
+
+The R32 model forecast before kickoff was Norway ~39% / draw ~28% / Ivory Coast ~32%
+over 90 minutes, with a rough advancement estimate of Norway ~54% if the draw bucket
+was split evenly for extra time / penalties.
+
+For the R16 Brazil fixture, the model is again a 90-minute W/D/L forecast. If the draw
+bucket is split evenly for extra time / penalties, the rough advancement estimate is
+Brazil ~61% vs Norway ~39%.
+
+Caveat: the canonical local `matches.csv` still has Brazil only through its
+2026-06-13 group match against Morocco. The Brazil notebook injects the supplied
+late-June Brazil results in memory, while the repository-level prediction CSV is
+still produced by the original configured fixture list.
 
 ---
 
@@ -208,6 +244,10 @@ norway-wc/
 │   └── README.md                    Setup + usage for the Flashscore scraper
 │
 └── notebooks/
-    └── iraq_vs_norway.ipynb         Interactive prediction for the 2026-06-16 fixture:
-                                     W/D/L table, Poisson scoreline grid, feature importance
+    ├── iraq_vs_norway.ipynb         Interactive prediction for the 2026-06-16 fixture
+    ├── norway_vs_senegal.ipynb      Interactive prediction for the Senegal fixture
+    ├── norway_vs_france.ipynb       Interactive prediction / post-check for France
+    ├── norway_vs_ivory_coast.ipynb  Round-of-32 prediction vs Ivory Coast
+    └── norway_vs_brazil.ipynb       Round-of-16 prediction vs Brazil:
+                                     W/D/L table, Poisson scoreline grid, feature snapshot
 ```
